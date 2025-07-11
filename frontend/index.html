@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Marketplaces</title>
+    <script>
+    async function loadMarketplaces() {
+        const res = await fetch('/marketplaces');
+        const data = await res.json();
+        const list = document.getElementById('markets');
+        list.innerHTML = '';
+        data.forEach(m => {
+            const li = document.createElement('li');
+            li.textContent = m.name;
+            list.appendChild(li);
+        });
+    }
+
+    async function addMarketplace() {
+        const name = document.getElementById('name').value.trim();
+        if(!name) return;
+        await fetch('/marketplaces/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name })
+        });
+        document.getElementById('name').value = '';
+        loadMarketplaces();
+    }
+
+    window.onload = loadMarketplaces;
+    </script>
+</head>
+<body>
+    <h1>Marketplaces</h1>
+    <ul id="markets"></ul>
+    <input id="name" placeholder="New marketplace">
+    <button onclick="addMarketplace()">Add</button>
+</body>
+</html>
