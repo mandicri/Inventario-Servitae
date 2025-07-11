@@ -25,7 +25,6 @@ El servidor expondrá las siguientes rutas:
 - `POST /marketplaces/add` agrega un nuevo marketplace con un cuerpo JSON `{"name": "nombre"}` y crea su carpeta de carga en `uploads/<nombre>`.
 
 La aplicación también sirve un frontend sencillo en la raíz (`/`) que muestra la lista de marketplaces y permite añadir nuevos dinámicamente.
-=======
 ## Barcode generation
 
 Run the application with Flask to generate barcodes:
